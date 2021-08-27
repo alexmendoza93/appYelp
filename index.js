@@ -1,7 +1,22 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+    useNewUrlParser: true,
+    // useCreateIndex: true,
+    useUnifiedTopology: true
+});
+// de esta forma llamomos y conectamos con la base de datos mongod con el nombre de yelp-camp y le ponemos opciones
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
+// esta es la logica para preguntarle a mondod si esta conectabo
+
 const app = express();
 // con estos dos hechamos a andar nuestro servidor
-// const mongoose = require('mongoose');
 const path = require('path');
 // con esto nos evitamos problemas de ejecucion
 
