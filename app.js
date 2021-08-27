@@ -28,6 +28,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 // avisamos que estamos utilizando la carpeta views
 
+app.use(express.urlencoded({extended: true}));
+// con esto parseamos por si queremos visualizar un post en una pagina
+
 app.get('/', (req, res) => {
     // res.send('Hola desde campamento yelp')
     // este mensaje es de calis para probar que estemos conectados con la pagina
@@ -49,6 +52,19 @@ app.get('/campgrounds/new', (req, res) => {
     res.render('campgrounds/new')
 });
 // me estaba saltando un problema por que estaba tomando new como si fuera id, porque este codigo lo puse despues de campgrounds/:id
+
+// ---------------------------------------------
+// le dicimos al post a donde mandar la informacion
+app.post('/campgrounds', async (req, res) => {
+    const campground = new Campground(req.body.campground);
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`)
+    // y con esto seteamos el pedo para que se agreguen nuevas areas para acampar
+    // res.send(req.body);
+    // con esto podemos ver el post si esta parseado el pedo
+});
+
+
 // --------------------------------------------
 // iniciamos con nuestra pagina a detalle con id
 app.get('/campgrounds/:id', async (req, res) => { 

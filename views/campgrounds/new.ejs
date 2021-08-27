@@ -8,13 +8,13 @@
   </head>
   <body>
     <h1>Agregue nuevo lugar</h1>
-    <form action="/campground" method="POST">
+    <form action="/campgrounds" method="POST">
       <div>
         <label for="title">Titulo</label>
         <input
           type="text"
+          placeholder="Cañon del Perreo"
           id="title"
-          placeholder="Cañon del perreo"
           name="campground[title]"
         />
       </div>
@@ -22,12 +22,12 @@
         <label for="location">Locación</label>
         <input
           type="text"
+          placeholder="Tepico el Chico"
           id="location"
-          placeholder="Tepico El Chico"
           name="campground[location]"
         />
       </div>
-      <button>Agregar</button>
+      <button>Agregar Campamento</button>
     </form>
   </body>
 </html>
