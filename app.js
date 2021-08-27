@@ -93,6 +93,12 @@ app.get('/campgrounds/:id', async (req, res) => {
     // y de esta forma pasamos el id a Show.ejs
 });
 // --------------------------------------------
+// es hora de eliminar los areas de acampar
+app.delete('/campgrounds/:id', async (req, res) => {
+    const { id } = req.params;
+    await Campground.findByIdAndDelete(id);
+    res.redirect('/campgrounds');
+});
 // hacemos nuestro primer campamento
 // app.get('/makecampground', async (req, res) => {
 //     const camp = new campground({ title: 'Mi Patio Trasero', description: 'un sitio muy comodo'});
