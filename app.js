@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const campground = require('./models/campground');
+const Campground = require('./models/campground');
 // de esta forma mandamos a llamar a nuestro modelo y podemos empeza a hacer objetos
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
@@ -20,6 +20,7 @@ db.once("open", () => {
 const app = express();
 // con estos dos hechamos a andar nuestro servidor
 const path = require('path');
+// const campground = require('./models/campground');
 // con esto nos evitamos problemas de ejecucion
 
 app.set('view engine', 'ejs');
@@ -36,11 +37,21 @@ app.get('/', (req, res) => {
 // -------------------------------------------
 // establecemos una pagina de campground en express
 app.get('/campgrounds', async (req, res) => {
-    const campgrounds = await campground.find({});
+    const campgrounds = await Campground.find({});
+    // con esto mandamos allamar la base de datos en mongod
     res.render('campgrounds/index', {campgrounds})
+    // con esto linkeamos mongod con index
 });
 
 // ------------------------------------------
+// iniciamos con nuestra pagina a detalle con id
+app.get('/campgrounds/:id', async (req, res) => { 
+    const campground = await Campground.findById(req.params.id);
+    // con esto obtenemos el id y lo guardamos en campground
+    res.render('campgrounds/show', {campground})
+    // y de esta forma pasamos el id a Show.ejs
+});
+// --------------------------------------------
 // hacemos nuestro primer campamento
 // app.get('/makecampground', async (req, res) => {
 //     const camp = new campground({ title: 'Mi Patio Trasero', description: 'un sitio muy comodo'});

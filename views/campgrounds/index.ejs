@@ -10,7 +10,9 @@
     <h1>Todos las Areas para acampar</h1>
     <ol>
       <% for( let campground of campgrounds) {%>
-      <li><%= campground.title %></li>
+      <li>
+        <a href="/campgrounds/<%= campground._id %>"><%= campground.title %></a>
+      </li>
       <% } %>
     </ol>
   </body>
