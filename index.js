@@ -32,14 +32,22 @@ app.get('/', (req, res) => {
     // este mensaje es de calis para probar que estemos conectados con la pagina
     res.render('home')
 });
+
+// -------------------------------------------
+// establecemos una pagina de campground en express
+app.get('/campgrounds', async (req, res) => {
+    const campgrounds = await campground.find({});
+    res.render('campgrounds/index', {campgrounds})
+});
+
 // ------------------------------------------
 // hacemos nuestro primer campamento
-app.get('/makecampground', async (req, res) => {
-    const camp = new campground({ title: 'Mi Patio Trasero', description: 'un sitio muy comodo'});
-    await camp.save();
-    res.send(camp)
+// app.get('/makecampground', async (req, res) => {
+//     const camp = new campground({ title: 'Mi Patio Trasero', description: 'un sitio muy comodo'});
+//     await camp.save();
+//     res.send(camp)
     // res.send sirve para mostrar mensajes
-});
+// });
 // ----------------------------------
 
 app.listen(3000, () => {
