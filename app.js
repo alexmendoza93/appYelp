@@ -44,6 +44,12 @@ app.get('/campgrounds', async (req, res) => {
 });
 
 // ------------------------------------------
+// habilitamos pagina para agregar nuevos campamentos
+app.get('/campgrounds/new', (req, res) => { 
+    res.render('campgrounds/new')
+});
+// me estaba saltando un problema por que estaba tomando new como si fuera id, porque este codigo lo puse despues de campgrounds/:id
+// --------------------------------------------
 // iniciamos con nuestra pagina a detalle con id
 app.get('/campgrounds/:id', async (req, res) => { 
     const campground = await Campground.findById(req.params.id);
@@ -51,7 +57,7 @@ app.get('/campgrounds/:id', async (req, res) => {
     res.render('campgrounds/show', {campground})
     // y de esta forma pasamos el id a Show.ejs
 });
-// --------------------------------------------
+// ---------------------------------------------
 // hacemos nuestro primer campamento
 // app.get('/makecampground', async (req, res) => {
 //     const camp = new campground({ title: 'Mi Patio Trasero', description: 'un sitio muy comodo'});
