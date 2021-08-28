@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
 // de esta forma mandamos a llamar a nuestro modelo y podemos empeza a hacer objetos
@@ -24,6 +25,7 @@ const path = require('path');
 // const campground = require('./models/campground');
 // con esto nos evitamos problemas de ejecucion
 
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 // con esto hacemos funcionar nuestros templates de ejs
 app.set('views', path.join(__dirname, 'views'));
