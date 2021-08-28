@@ -2,6 +2,9 @@
 <!-- <h1>Campamento a detalle</h1> -->
 <h1><%= campground.title %></h1>
 <h2><%= campground.location %></h2>
+<img src="<%= campground.image %> " alt="camp" width="100%" />
+<p><%= campground.description %></p>
+<p>Precio $<%= campground.price %> Dolares</p>
 <a href="/campgrounds/<%=campground._id%>/edit">Editar este campamento</a>
 <br />
 <a href="/campgrounds">Todas las areas</a>
